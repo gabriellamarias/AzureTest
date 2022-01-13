@@ -85,26 +85,5 @@ namespace WebApplication5.Controllers
 
             return CreatedAtAction("GetStudent", new { id = student.ID }, student);
         }
-
-        // DELETE: api/Student/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Student>> DeleteStudent(int id)
-        {
-            var student = await _context.Student.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            _context.Student.Remove(student);
-            await _context.SaveChangesAsync();
-
-            return student;
-        }
-
-        private bool StudentExists(int id)
-        {
-            return _context.Student.Any(e => e.ID == id);
-        }
     }
 }
